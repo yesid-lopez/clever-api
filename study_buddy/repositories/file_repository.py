@@ -7,7 +7,9 @@ from study_buddy.utils.database import file_collection
 
 
 def save(file: File):
-    new_file = file_collection.insert_one(json.loads(file.model_dump(exclude={"id"})))
+    new_file = file_collection.insert_one(
+        json.loads(file.model_dump(exclude={"id"}))
+    )
     return str(new_file.inserted_id)
 
 
