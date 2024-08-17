@@ -1,0 +1,18 @@
+.env
+__pycache__
+data
+.DS_Store
+
+# bash
+create-project.sh
+
+# milvus
+embedEtcd.yaml
+volumes
+
+# pdfs
+*.pdf
+*.json
+
+secrets.yaml
+chart/charts
