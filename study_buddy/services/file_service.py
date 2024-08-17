@@ -30,7 +30,10 @@ def _get_uri(public_url: str):
 
 def save_file(name: str, path: str, uri: str):
     file = File(
-        path=path, name="".join(name.split(".")[:-1]), uri=uri, type=get_type(path),
+        path=path,
+        name="".join(name.split(".")[:-1]),
+        uri=uri,
+        type=get_type(path),
     )
     file_id = file_repository.save(file)
     return file_id

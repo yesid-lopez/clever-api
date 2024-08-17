@@ -5,11 +5,14 @@ from pydantic import BaseModel, Field
 
 from study_buddy.services import course_service
 from study_buddy.services.file_service import find_file
-from study_buddy.utils.cloud_vision import (convert_to_readable_text,
-                                            extract_text_from_file)
+from study_buddy.utils.cloud_vision import (
+    convert_to_readable_text,
+    extract_text_from_file,
+)
 from study_buddy.utils.models import get_llm
 from study_buddy.utils.query_engine import get_query_engine
-from study_buddy.utils.trulens import TrulensClient
+
+# from study_buddy.utils.trulens import TrulensClient
 from study_buddy.utils.vector_store import VectorStore
 
 
@@ -77,20 +80,24 @@ def ask_question(files: list[str], question_options: QuestionOptions):
 
 def _ask(files: list[str], question: str):
     collections = [
-        find_file(file_id).embeddings_collection for file_id in files]
+        find_file(file_id).embeddings_collection for file_id in files
+    ]
     vector_store = VectorStore()
     vector_stores = [
-        vector_store.load_vector_store(collection) for collection in collections
+        vector_store.load_vector_store(collection)
+        for collection in collections
     ]
 
     query_engine = get_query_engine(vector_stores)
 
-    tru_query_engine_recorder = TrulensClient().create_recorder(
-        query_engine, "Visual Questions"
-    )
+    # tru_query_engine_recorder = TrulensClient().create_recorder(
+    #     query_engine, "Visual Questions"
+    # )
 
-    with tru_query_engine_recorder:
-        response = query_engine.query(question)
+    # with tru_query_engine_recorder:
+    #     response = query_engine.query(question)
+
+    response = query_engine.query(question)
 
     return str(response)
 
