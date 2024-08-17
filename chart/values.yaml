@@ -1,0 +1,22 @@
+appName: study_buddy
+namespace: tidb-hackathon
+
+image:
+  repository: docker.yesidlopez.de/study_buddy
+  pullPolicy: IfNotPresent
+  tag: "1.0.0"
+
+service:
+  type: LoadBalancer
+  port: 80
+
+readinessProbe:
+  httpGet:
+    path: /health
+    port: http
+
+mongodb:
+  auth:
+    enabled: false
+  service:
+    type: LoadBalancer
