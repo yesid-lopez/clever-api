@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "study_buddy"
+packages = [{include = "study_buddy"}]
+version = "0.1.0"
+description = ""
+authors = ["Yesid Lopez <<yesid.leonardo.lopez@hotmail.com>>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+langchain-openai = "^0.1.20"
+fastapi = {extras = ["standard"], version = "^0.112.0"}
+python-dotenv = "^1.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
