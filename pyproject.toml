@@ -6,11 +6,16 @@ description = ""
 authors = ["Yesid Lopez <<yesid.leonardo.lopez@hotmail.com>>"]
 
 [tool.poetry.dependencies]
-python = "^3.10"
-langchain-openai = "^0.1.20"
-fastapi = {extras = ["standard"], version = "^0.112.0"}
-python-dotenv = "^1.0.1"
+python = ">=3.10,<3.12"
+fastapi = "^0.112.1"
+uvicorn = "^0.30.6"
+pymongo = "^4.8.0"
+trulens-eval = "^0.33.0"
+llama-hub = "^0.0.79.post1"
 
+[tool.poetry.group.dev.dependencies]
+black = "^24.8.0"
+mypy = "^1.11.1"
 
 [build-system]
 requires = ["poetry-core"]
