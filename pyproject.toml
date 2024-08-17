@@ -16,6 +16,8 @@ llama-hub = "^0.0.79.post1"
 [tool.poetry.group.dev.dependencies]
 black = "^24.8.0"
 mypy = "^1.11.1"
+pyflakes = "^3.2.0"
+flake8 = "^7.1.1"
 
 [build-system]
 requires = ["poetry-core"]
