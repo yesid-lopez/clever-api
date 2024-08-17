@@ -1,9 +1,14 @@
 from dotenv import load_dotenv
 from fastapi import FastAPI
 
-from study_buddy.routers import (ai_router, course_router, file_router,
-                                 flashcards_router, health_router,
-                                 question_router)
+from study_buddy.routers import (
+    ai_router,
+    course_router,
+    file_router,
+    flashcards_router,
+    health_router,
+    question_router,
+)
 
 load_dotenv()
 study_buddy = "study_buddy".upper()

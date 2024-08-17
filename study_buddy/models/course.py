@@ -12,7 +12,7 @@ class Course(BaseModel):
         schema_extra = {
             "example": {
                 "name": "History of Computers",
-                "files": ["656b599eb8a5f633adf7eab9"]
+                "files": ["656b599eb8a5f633adf7eab9"],
             }
         }
 
