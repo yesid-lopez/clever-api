@@ -1,6 +1,6 @@
 import json
 
-from fastapi import APIRouter
+from fastapi import APIRouter, File, UploadFile
 
 from study_buddy.models.ask_body import AskBody
 from study_buddy.models.question import Question

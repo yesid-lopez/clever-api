@@ -1,4 +1,4 @@
-from llama_index import Document
+from llama_index.core import Document
 
 from study_buddy.models.flashcards import Flashcards, RawFlashcards
 from study_buddy.repositories import flashcard_repository
