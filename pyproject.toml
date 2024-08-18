@@ -12,6 +12,7 @@ uvicorn = "^0.30.6"
 pymongo = "^4.8.0"
 trulens-eval = "^0.33.0"
 llama-hub = "^0.0.79.post1"
+llama-index-vector-stores-tidbvector = "^0.1.2"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.8.0"

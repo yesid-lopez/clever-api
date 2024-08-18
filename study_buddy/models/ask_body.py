@@ -7,7 +7,7 @@ class AskBody(BaseModel):
     files: list[str]
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "course_id": "656b599eb8a5f633adf7eab9",
                 "files": ["656b599eb8a5f633adf7eab9"],

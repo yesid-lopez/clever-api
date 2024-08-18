@@ -1,6 +1,6 @@
-from typing import Optional, Any
+from typing import Any, Optional
 
-from pydantic import BaseModel, field_validator, Field
+from pydantic import BaseModel, Field, field_validator
 
 
 class Course(BaseModel):
@@ -9,7 +9,7 @@ class Course(BaseModel):
     files: list[str]
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "name": "History of Computers",
                 "files": ["656b599eb8a5f633adf7eab9"],

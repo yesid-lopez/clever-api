@@ -1807,6 +1807,23 @@ llama-index-core = ">=0.10.7,<0.11.0"
 llama-parse = ">=0.4.0"
 
 [[package]]
+name = "llama-index-vector-stores-tidbvector"
+version = "0.1.2"
+description = "llama-index vector-stores tidbvector integration"
+optional = false
+python-versions = "<4.0,>=3.8.1"
+files = [
+    {file = "llama_index_vector_stores_tidbvector-0.1.2-py3-none-any.whl", hash = "sha256:79451187501c8645ce83fe8f4d1155b6a47a9c78b3115281001ae1752e61e84c"},
+    {file = "llama_index_vector_stores_tidbvector-0.1.2.tar.gz", hash = "sha256:7293b2d59c97dd3d9290f3a4ccde49c46b07d812a09119829c0dcc1adeacca0b"},
+]
+
+[package.dependencies]
+llama-index-core = ">=0.10.1"
+pymysql = ">=1.1.0,<2.0.0"
+sqlalchemy = ">=1.4,<3"
+tidb-vector = {version = ">=0.0.3,<1.0.0", extras = ["client"]}
+
+[[package]]
 name = "llama-parse"
 version = "0.4.9"
 description = "Parse files into RAG-Optimized formats."
@@ -3265,6 +3282,21 @@ test = ["pytest (>=7)"]
 zstd = ["zstandard"]
 
 [[package]]
+name = "pymysql"
+version = "1.1.1"
+description = "Pure Python MySQL Driver"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "PyMySQL-1.1.1-py3-none-any.whl", hash = "sha256:4de15da4c61dc132f4fb9ab763063e693d521a80fd0e87943b9a453dd4c19d6c"},
+    {file = "pymysql-1.1.1.tar.gz", hash = "sha256:e127611aaf2b417403c60bf4dc570124aeb4a57f5f37b8e95ae399a42f904cd0"},
+]
+
+[package.extras]
+ed25519 = ["PyNaCl (>=1.4.0)"]
+rsa = ["cryptography"]
+
+[[package]]
 name = "pyparsing"
 version = "3.1.2"
 description = "pyparsing module - Classes and methods to define and execute parsing grammars"
@@ -4096,6 +4128,24 @@ doc = ["reno", "sphinx"]
 test = ["pytest", "tornado (>=4.5)", "typeguard"]
 
 [[package]]
+name = "tidb-vector"
+version = "0.0.10"
+description = "A Python client for TiDB Vector"
+optional = false
+python-versions = "<4.0,>=3.8.1"
+files = [
+    {file = "tidb_vector-0.0.10-py3-none-any.whl", hash = "sha256:fc9f451cde35c685e407729a012489a8a50e66356e04bf2714dc950c0f99eb06"},
+    {file = "tidb_vector-0.0.10.tar.gz", hash = "sha256:cb4e2c88610b63729e0f779ccd599f4c1e77a308f0baefd0a4c69d47f7d2baa0"},
+]
+
+[package.dependencies]
+numpy = ">=1,<2"
+SQLAlchemy = {version = ">=1.4,<3", optional = true, markers = "extra == \"client\""}
+
+[package.extras]
+client = ["SQLAlchemy (>=1.4,<3)"]
+
+[[package]]
 name = "tiktoken"
 version = "0.7.0"
 description = "tiktoken is a fast BPE tokeniser for use with OpenAI's models"
@@ -4569,4 +4619,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.12"
-content-hash = "55e594360d35a27b0728e7579c6e93fc39518341375492b390189f58fee6a324"
+content-hash = "c1e6f0fa54ff7ea76eb2fda5ca1cdde5a6e42490e5ec7253265646a3ea36a722"
