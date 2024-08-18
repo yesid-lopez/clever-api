@@ -6,7 +6,7 @@ from study_buddy.services import flashcard_service
 router = APIRouter()
 
 
-@router.post("/flashcards/generate", tags=["Flashcards"])
+@router.post("/flashcards/generate")
 def generate_flashcards(generate_flashcards_body: GenerateFlashcardsBody):
     flashcards = flashcard_service.generate(
         sources=generate_flashcards_body.files,
@@ -21,7 +21,7 @@ def generate_flashcards(generate_flashcards_body: GenerateFlashcardsBody):
     return flashcards
 
 
-@router.get("/flashcards", tags=["Flashcards"])
+@router.get("/flashcards")
 def get_all_flashcards(course_id: str):
     questions = flashcard_service.find_by_course(course_id)
     return questions

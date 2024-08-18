@@ -5,7 +5,7 @@ from study_buddy.services import file_service
 router = APIRouter()
 
 
-@router.post("/file", tags=["File"])
+@router.post("/file")
 def upload_file(file: UploadFile = File(...)):
     blob_path, uri = file_service.upload_file(file)
     file_id = file_service.save_file(file.filename, blob_path, uri)
@@ -17,7 +17,7 @@ def upload_file(file: UploadFile = File(...)):
     }
 
 
-@router.get("/file", tags=["File"])
+@router.get("/file")
 def find_file(name: str = None, file_id: str = None):
     file = file_service.find_file(file_id)
 

@@ -8,14 +8,14 @@ from study_buddy.utils.cloud_vision import (convert_to_readable_text,
 router = APIRouter()
 
 
-@router.get("/extract-text-from-image", tags=["OCR"])
+@router.get("/extract-text-from-image")
 def get_text_from_image(uri: str):
     ocr_content = extract_text_from_uri(uri)
     content = convert_to_readable_text(ocr_content)
     return {"text": content.text}
 
 
-@router.get("/text-to-speech/stream", tags=["Text to Speech"])
+@router.get("/text-to-speech/stream")
 def stream_text_to_speech(message: str):
     audio = tts_service.get_speech(message)
     streaming_response = StreamingResponse(
@@ -24,7 +24,7 @@ def stream_text_to_speech(message: str):
     return streaming_response
 
 
-@router.get("/text-to-speech", tags=["Text to Speech"])
+@router.get("/text-to-speech")
 def text_to_speech(message: str):
     audio = tts_service.get_speech(message)
     return Response(content=audio.content, media_type="audio/wav")
