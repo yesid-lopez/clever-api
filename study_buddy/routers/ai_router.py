@@ -27,4 +27,4 @@ def stream_text_to_speech(message: str):
 @router.get("/text-to-speech", tags=["Text to Speech"])
 def text_to_speech(message: str):
     audio = tts_service.get_speech(message)
-    return Response(content=audio.audio_content, media_type="audio/wav")
+    return Response(content=audio.content, media_type="audio/wav")
