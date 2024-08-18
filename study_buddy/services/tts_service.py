@@ -1,28 +1,17 @@
 import io
 
-# from google.cloud import texttospeech
+from openai import OpenAI
+
+client = OpenAI()
 
 
 def get_speech(message: str):
-    # client = texttospeech.TextToSpeechClient()
-    # input_text = texttospeech.SynthesisInput(text=message)
-
-    # # Configure the voice settings
-    # voice = texttospeech.VoiceSelectionParams(
-    #     language_code="en-US", ssml_gender=texttospeech.SsmlVoiceGender.NEUTRAL
-    # )
-
-    # # Set the audio configuration
-    # audio_config = texttospeech.AudioConfig(
-    #     audio_encoding=texttospeech.AudioEncoding.MP3
-    # )
-
-    # # Perform the text-to-speech request
-    # response = client.synthesize_speech(
-    #     input=input_text, voice=voice, audio_config=audio_config
-    # )
-    # return response
-    pass
+    response = client.audio.speech.create(
+        model="tts-1",
+        voice="alloy",
+        input=message
+    )
+    return response
 
 
 def convert_stream(audio_content: bytes):
