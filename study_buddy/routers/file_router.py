@@ -7,8 +7,8 @@ router = APIRouter()
 
 @router.post("/file")
 def upload_file(file: UploadFile = File(...)):
-    blob_path, uri = file_service.upload_file(file)
-    file_id = file_service.save_file(file.filename, blob_path, uri)
+    blob_name = file_service.upload_file(file)
+    file_id = file_service.save_file(file.filename, blob_name)
     created_file = file_service.find_file(file_id)
     return {
         "file_id": created_file.id,

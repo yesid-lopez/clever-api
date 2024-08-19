@@ -1,7 +1,8 @@
+from os import environ
 from typing import Optional
 
 from fastapi import UploadFile
-from google.cloud import storage
+from minio import Minio
 
 from study_buddy.models.file import File
 from study_buddy.repositories import file_repository
@@ -9,30 +10,34 @@ from study_buddy.repositories import file_repository
 bucket_name = "study-buddy-files"
 
 
-def get_bucket():
-    storage_client = storage.Client()
-    bucket = storage_client.bucket(bucket_name)
-    return bucket
+def get_minio_client():
+    endpoint = environ.get("MINIO_ENDPOINT")
+    access_key = environ.get("MINIO_ACCESS_KEY")
+    secret_key = environ.get("MINIO_SECRET_KEY")
+    secure = environ.get("MINIO_SECURE")
+    minio_client = Minio(
+        endpoint,
+        access_key=access_key,
+        secret_key=secret_key,
+        secure=True if secure == "True" else False,
+    )
+    return minio_client
 
 
 def upload_file(file: UploadFile):
+    bucket_name = environ.get("MINIO_BUCKET_NAME")
     blob_name = format_name(file.filename)
-    blob = get_bucket().blob(blob_name)
-    content = file.file.read()
-    blob.upload_from_string(content, content_type=file.content_type)
-
-    return blob_name, _get_uri(blob.public_url)
-
-
-def _get_uri(public_url: str):
-    return public_url.replace("https://storage.googleapis.com/", "gs://")
+    minio_client = get_minio_client()
+    content = file.file
+    minio_client.put_object(bucket_name, blob_name, content,
+                            file.size,)
+    return blob_name
 
 
-def save_file(name: str, path: str, uri: str):
+def save_file(name: str, path: str):
     file = File(
         path=path,
         name="".join(name.split(".")[:-1]),
-        uri=uri,
         type=get_type(path),
     )
     file_id = file_repository.save(file)

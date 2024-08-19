@@ -1,5 +1,3 @@
-import json
-
 from bson import ObjectId
 
 from study_buddy.models.question import Question
@@ -8,7 +6,7 @@ from study_buddy.utils.database import question_collection
 
 def save(question: Question):
     saved_question = question_collection.insert_one(
-        json.loads(question.model_dump(exclude={"id"}))
+        question.model_dump(exclude={"id"})
     )
     return str(saved_question.inserted_id)
 

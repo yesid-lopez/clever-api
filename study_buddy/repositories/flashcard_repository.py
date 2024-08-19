@@ -1,19 +1,15 @@
-import json
-
-from study_buddy.models.flashcards import Flashcards, Flashcard
+from study_buddy.models.flashcards import Flashcard, Flashcards
 from study_buddy.utils.database import flashcard_collection
 
 
 def save_many(flashcards: Flashcards, course_id: str):
     saved_questions = flashcard_collection.insert_many(
         [
-            json.loads(
-                Flashcard(
-                    back=flashcard.back,
-                    front=flashcard.front,
-                    course_id=course_id,
-                ).model_dump(exclude={"id"})
-            )
+            Flashcard(
+                back=flashcard.back,
+                front=flashcard.front,
+                course_id=course_id,
+            ).model_dump(exclude={"id"})
             for flashcard in flashcards.flash_cards
         ]
     )

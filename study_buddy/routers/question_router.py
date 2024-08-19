@@ -1,5 +1,3 @@
-import json
-
 from fastapi import APIRouter, File, UploadFile
 
 from study_buddy.models.ask_body import AskBody
@@ -16,7 +14,7 @@ def ask_question(ask_body: AskBody):
         question=ask_body.question, answer=answer, course_id=ask_body.course_id
     )
     question_service.save_question(question)
-    return json.loads(question.model_dump(exclude={"course_id"}))
+    return question.model_dump(exclude={"course_id"})
 
 
 @router.get("/question")

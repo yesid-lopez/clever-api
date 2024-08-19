@@ -8,7 +8,7 @@ from study_buddy.utils.database import file_collection
 
 def save(file: File):
     new_file = file_collection.insert_one(
-        json.loads(file.model_dump(exclude={"id"}))
+        file.model_dump(exclude={"id"})
     )
     return str(new_file.inserted_id)
 
@@ -33,5 +33,5 @@ def find_by_id(_id: str) -> File | None:
 def update(file: File):
     file_collection.update_one(
         {"_id": ObjectId(file.id)},
-        {"$set": json.loads(file.model_dump(exclude={"id"}))},
+        {"$set": file.model_dump(exclude={"id"})},
     )

@@ -8,7 +8,7 @@ from study_buddy.utils.database import course_collection
 
 def save(course: Course):
     new_course = course_collection.insert_one(
-        json.loads(course.model_dump(exclude={"id"}))
+        course.model_dump(exclude={"id"})
     )
     return str(new_course.inserted_id)
 
