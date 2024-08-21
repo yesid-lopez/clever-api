@@ -1,5 +1,3 @@
-import json
-
 from bson import ObjectId
 
 from study_buddy.models.file import File

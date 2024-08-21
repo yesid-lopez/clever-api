@@ -5,9 +5,9 @@ from pydantic import BaseModel, Field
 
 from study_buddy.services import course_service
 from study_buddy.services.file_service import find_file
-from study_buddy.utils.cloud_vision import (convert_to_readable_text,
-                                            extract_text_from_file)
 from study_buddy.utils.models import get_llm
+from study_buddy.utils.ocr import (convert_to_readable_text,
+                                   extract_text_from_file)
 from study_buddy.utils.query_engine import get_query_engine
 # from study_buddy.utils.trulens import TrulensClient
 from study_buddy.utils.vector_store import VectorStore

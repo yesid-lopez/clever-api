@@ -1,6 +1,6 @@
 from fastapi import UploadFile
 
-from study_buddy.utils.models import get_llm
+from study_buddy.utils.models import get_llm, get_llm_vision
 
 # from google.cloud import vision
 

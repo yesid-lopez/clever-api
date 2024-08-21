@@ -2,8 +2,8 @@ from fastapi import APIRouter
 from fastapi.responses import Response, StreamingResponse
 
 from study_buddy.services import tts_service
-from study_buddy.utils.cloud_vision import (convert_to_readable_text,
-                                            extract_text_from_uri)
+from study_buddy.utils.ocr import (convert_to_readable_text,
+                                   extract_text_from_uri)
 
 router = APIRouter()
 
