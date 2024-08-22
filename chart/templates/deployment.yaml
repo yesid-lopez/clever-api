@@ -26,9 +26,9 @@ spec:
                 name: openai
                 key: key
           - name: MONGO_URL
-            value: "mongodb://tidb-hackathon.mongodb.svc.cluster.local:27017"
+            value: "mongodb://tidb-hackathon.clever-mongodb.svc.cluster.local:27017"
           - name: MINIO_ENDPOINT
-            value: "tidb-hackathon.minio.svc.cluster.local:9000"
+            value: "minio.minio.svc.cluster.local:9000"
           - name: MINIO_BUCKET_NAME
             value: "clever"
           - name: MINIO_SECURE

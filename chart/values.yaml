@@ -4,7 +4,7 @@ namespace: tidb-hackathon
 image:
   repository: docker.yesidlopez.de/study_buddy
   pullPolicy: IfNotPresent
-  tag: "beta-1.0.0"
+  tag: "1.1.0"
 
 service:
   type: LoadBalancer
