@@ -30,9 +30,9 @@ spec:
           - name: MINIO_ENDPOINT
             value: "tidb-hackathon.minio.svc.cluster.local:9000"
           - name: MINIO_BUCKET_NAME
-            value: clever
+            value: "clever"
           - name: MINIO_SECURE
-            value: false
+            value: "false"
           - name: MINIO_ACCESS_KEY
             valueFrom:
               secretKeyRef:
