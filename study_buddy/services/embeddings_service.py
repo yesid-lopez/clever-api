@@ -1,4 +1,8 @@
-from study_buddy.loader import gcs_loader, image_loader
+import tempfile
+from os import path
+
+from study_buddy.clients.minio_client import MinioClient
+from study_buddy.loader import image_loader, pdf_loader
 from study_buddy.models.file import File
 from study_buddy.services import file_service
 from study_buddy.utils.vector_store import VectorStore, format_collection_name
@@ -18,10 +22,14 @@ def create_collection(file: File):
 
 def get_documents(file):
     file_extension = file.path.split(".")[-1].lower()
-    if file_extension in ["jpg", "jpeg", "png"]:
-        documents = image_loader.get_documents(file)
-    else:
-        documents = gcs_loader.get_documents(file)
+    with tempfile.TemporaryDirectory() as tmpdirname:
+        file_path = path.join(tmpdirname, file.path)
+        MinioClient().fget_file(file.path, file_path)
+        # If it is an image, extract text from it
+        if file_extension in ["jpg", "jpeg", "png"]:
+            documents = image_loader.get_documents(file_path)
+        elif file_extension in ["pdf"]:
+            documents = pdf_loader.get_documents(file_path)
     return documents
 
 

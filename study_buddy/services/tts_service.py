@@ -7,9 +7,7 @@ client = OpenAI()
 
 def get_speech(message: str):
     response = client.audio.speech.create(
-        model="tts-1",
-        voice="alloy",
-        input=message
+        model="tts-1", voice="alloy", input=message
     )
     return response
 

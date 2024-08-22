@@ -13,7 +13,8 @@ def ask(files: list[str], question: str):
     ]
     vector_store = VectorStore()
     vector_stores = [
-        vector_store.load_vector_store(collection) for collection in collections
+        vector_store.load_vector_store(collection)
+        for collection in collections
     ]
 
     query_engine = get_query_engine(vector_stores)
