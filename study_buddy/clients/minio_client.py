@@ -32,3 +32,11 @@ class MinioClient:
             self.bucket_name, blob_name, content, file.size
         )
         return blob_name
+
+    def get_file(self, blob_name: str):
+        return self.minio_client.get_object(self.bucket_name, blob_name)
+
+    def fget_file(self, blob_name: str, file_path: str):
+        return self.minio_client.fget_object(
+            self.bucket_name, blob_name, file_path
+        )
