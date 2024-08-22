@@ -1,10 +1,16 @@
-from llama_index.core import Document
+import logging
 
-from study_buddy.models.flashcards import Flashcards, RawFlashcards
+from llama_index.core import Document
+from pydantic import TypeAdapter
+
+from study_buddy.models.flashcards import (Flashcards, RawFlashcard,
+                                           RawFlashcards)
 from study_buddy.repositories import flashcard_repository
 from study_buddy.services import file_service
 from study_buddy.services.embeddings_service import get_documents
 from study_buddy.utils.llama_indices import CustomSummaryIndex
+
+logger = logging.getLogger(__name__)
 
 
 def generate(sources: list[str], number=5):
@@ -13,9 +19,7 @@ def generate(sources: list[str], number=5):
         documents = get_documents(file_service.find_file(file_id))
         flashcards = _generate(documents, number)
         if flashcards:
-            returned_flashcards.flash_cards = (
-                flashcards.flash_cards + returned_flashcards.flash_cards
-            )
+            returned_flashcards.flash_cards = flashcards + returned_flashcards.flash_cards
     return returned_flashcards
 
 
@@ -25,18 +29,22 @@ def _generate(documents: list[Document], number: int):
         "with one pair on each line. "
         f"Generate at least {number} questions."
         "If a question is missing it's answer, use your best judgment. "
-        "Write each line as as follows:\nfront: <question> back: <answer>"
+        "Return a list of JSON objects:\n"
+        '[{"front": <question>, "back": <answer>}]'
     )
 
     response = None
     retries = 0
+    ta = TypeAdapter(list[RawFlashcard])
+
     while not response and retries < 3:
         try:
-            response = CustomSummaryIndex(documents).query(
-                query, output_class=RawFlashcards
-            )
-            response = response.response
+            response = CustomSummaryIndex(documents).query(query)
+            response = ta.validate_json(response.response)
         except Exception:
+            logger.exception(
+                f"Failed to generate flashcards,retrying again. Retry number {retries}"
+            )
             retries += 1
     return response
 

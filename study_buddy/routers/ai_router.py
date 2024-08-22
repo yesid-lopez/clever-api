@@ -2,17 +2,15 @@ from fastapi import APIRouter
 from fastapi.responses import Response, StreamingResponse
 
 from study_buddy.services import tts_service
-from study_buddy.utils.ocr import (convert_to_readable_text,
-                                   extract_text_from_uri)
 
 router = APIRouter()
 
 
 @router.get("/extract-text-from-image")
 def get_text_from_image(uri: str):
-    ocr_content = extract_text_from_uri(uri)
-    content = convert_to_readable_text(ocr_content)
-    return {"text": content.text}
+    #     ocr_content = extract_text_from_uri(uri)
+    #     return {"text": content.text}
+    pass
 
 
 @router.get("/text-to-speech/stream")

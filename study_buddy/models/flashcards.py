@@ -1,6 +1,6 @@
-from typing import Optional, Any
+from typing import Any, Optional
 
-from pydantic import BaseModel, field_validator, Field
+from pydantic import BaseModel, Field, field_validator
 
 
 class Flashcard(BaseModel):
@@ -19,6 +19,8 @@ class Flashcards(BaseModel):
 
 
 class RawFlashcard(BaseModel):
+    """Data model for a Flashcard"""
+
     front: str
     back: str
 

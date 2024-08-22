@@ -9,7 +9,7 @@ def get_embed_model():
 
 
 def get_llm():
-    llm = OpenAI()
+    llm = OpenAI(model="gpt-4o")
     return llm
 
 
