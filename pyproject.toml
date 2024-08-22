@@ -16,6 +16,7 @@ llama-index-vector-stores-tidbvector = "^0.1.2"
 python-multipart = "^0.0.9"
 minio = "^7.2.8"
 llama-index = "^0.10.67.post1"
+pymysql = "^1.1.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.8.0"
