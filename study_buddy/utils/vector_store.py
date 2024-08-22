@@ -1,4 +1,4 @@
-import os
+from os import getenv
 from typing import Optional
 
 from llama_index.core import StorageContext, VectorStoreIndex
@@ -12,15 +12,15 @@ class VectorStore:
     def __init__(self):
         self.vector_store = None
         self.index_from_docs: Optional[VectorStoreIndex] = None
-        self.uri = os.getenv("VECTOR_DB_URI")
-        self.token = os.getenv("VECTOR_DB_TOKEN")
+        self.uri = getenv("VECTOR_DB_URI")
+        self.token = getenv("VECTOR_DB_TOKEN")
 
     def load_vector_store(self, collection_name):
         self.vector_store = TiDBVectorStore(
-            collection_name=collection_name,
-            uri=self.uri,
-            token=self.token,
-            dim=768,
+            connection_string=getenv("TIDB_CONNECTION_STRING"),
+            table_name=collection_name,
+            distance_strategy="cosine",
+            vector_dimension=1536,
         )
         return self.vector_store
 

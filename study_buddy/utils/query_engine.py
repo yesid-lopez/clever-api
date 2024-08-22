@@ -1,6 +1,7 @@
 from llama_index.core import VectorStoreIndex
-from llama_index.core.query_engine.retriever_query_engine import \
-    RetrieverQueryEngine
+from llama_index.core.query_engine.retriever_query_engine import (
+    RetrieverQueryEngine,
+)
 from llama_index.core.retrievers import QueryFusionRetriever
 from llama_index.core.vector_stores.types import VectorStore
 
