@@ -11,7 +11,7 @@ from study_buddy.routers import (
 )
 
 load_dotenv()
-study_buddy = "study_buddy".upper()
+study_buddy = "Clever".upper()
 app = FastAPI(title=study_buddy, version="0.1.0")
 
 app.include_router(health_router.router, tags=["Health"])

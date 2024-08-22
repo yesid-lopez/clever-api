@@ -3,8 +3,11 @@ import logging
 from llama_index.core import Document
 from pydantic import TypeAdapter
 
-from study_buddy.models.flashcards import (Flashcards, RawFlashcard,
-                                           RawFlashcards)
+from study_buddy.models.flashcards import (
+    Flashcards,
+    RawFlashcard,
+    RawFlashcards,
+)
 from study_buddy.repositories import flashcard_repository
 from study_buddy.services import file_service
 from study_buddy.services.embeddings_service import get_documents
@@ -19,7 +22,9 @@ def generate(sources: list[str], number=5):
         documents = get_documents(file_service.find_file(file_id))
         flashcards = _generate(documents, number)
         if flashcards:
-            returned_flashcards.flash_cards = flashcards + returned_flashcards.flash_cards
+            returned_flashcards.flash_cards = (
+                flashcards + returned_flashcards.flash_cards
+            )
     return returned_flashcards
 
 

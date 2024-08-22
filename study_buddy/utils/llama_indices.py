@@ -1,7 +1,10 @@
 from typing import Sequence
 
-from llama_index.core import (Document, DocumentSummaryIndex,
-                              get_response_synthesizer)
+from llama_index.core import (
+    Document,
+    DocumentSummaryIndex,
+    get_response_synthesizer,
+)
 from llama_index.core.node_parser import SentenceSplitter
 
 from study_buddy.utils.models import get_llm
