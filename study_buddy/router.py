@@ -11,6 +11,8 @@ from study_buddy.routers import (
 )
 
 load_dotenv()
+
+
 study_buddy = "Clever".upper()
 app = FastAPI(title=study_buddy, version="0.1.0")
 

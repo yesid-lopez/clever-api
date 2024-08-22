@@ -4,11 +4,12 @@ from logging import getLogger
 from dotenv import load_dotenv
 from pymongo import MongoClient
 
+load_dotenv()
 logger = getLogger(__name__)
+
 MONGO_DETAILS = os.getenv(
     "MONGODB_URL", "mongodb://root:example@localhost:27017/"
 )
-load_dotenv()
 
 print(MONGO_DETAILS)
 logger.info(f"Connecting to MongoDB at {MONGO_DETAILS}")
