@@ -25,6 +25,29 @@ spec:
               secretKeyRef:
                 name: openai
                 key: key
+          - name: MONGO_URL
+            value: mongodb://study_buddy.mongodb.svc.cluster.local:27017
+          - name: MINIO_ENDPOINT
+            value: study_buddy.minio.svc.cluster.local:9000
+          - name: MINIO_BUCKET_NAME
+            value: clever
+          - name: MINIO_SECURE
+            value: false
+          - name: MINIO_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: minio
+                key: MINIO_ACCESS_KEY
+          - name: MINIO_SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: minio
+                key: MINIO_SECRET_KEY
+          - name: TIDB_CONNECTION_STRING
+            valueFrom:
+              secretKeyRef:
+                name: tidb
+                key: connection_string
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
