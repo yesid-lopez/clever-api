@@ -25,7 +25,7 @@ spec:
               secretKeyRef:
                 name: openai
                 key: key
-          - name: MONGO_URL
+          - name: MONGODB_URL
             value: "mongodb://clever-mongodb.tidb-hackathon.svc.cluster.local:27017"
           - name: MINIO_ENDPOINT
             value: "minio.minio.svc.cluster.local:9000"
