@@ -28,7 +28,7 @@ spec:
           - name: MONGODB_URL
             value: "mongodb://clever-mongodb.tidb-hackathon.svc.cluster.local:27017"
           - name: TRULENS_DB_URI
-            value: "postgresql://postgres:clever_trulens@clever-postgres.tidb-hackathon.svc.cluster.local:5432"
+            value: "postgresql://postgres:clever_trulens@clever-postgresql.tidb-hackathon.svc.cluster.local:5432"
           - name: MINIO_ENDPOINT
             value: "minio.minio.svc.cluster.local:9000"
           - name: MINIO_BUCKET_NAME
