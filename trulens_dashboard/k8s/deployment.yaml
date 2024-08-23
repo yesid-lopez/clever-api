@@ -21,7 +21,7 @@ spec:
           imagePullPolicy: "Always"
           env:
           - name: TRULENS_DB_URI
-            value: "postgresql://postgres:clever_trulens@clever-postgres.tidb-hackathon.svc.cluster.local:5432"
+            value: "postgresql://postgres:clever_trulens@clever-postgresql.tidb-hackathon.svc.cluster.local:5432"
           ports:
             - name: http
               containerPort: 8501
