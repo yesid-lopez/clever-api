@@ -12,7 +12,7 @@ services:
     ports:
       - "27017:27017"
     environment:
-      MONGO_INITDB_DATABASE: study_buddy
+      MONGO_INITDB_DATABASE: clever
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
 
@@ -22,13 +22,12 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_PASSWORD: clever_truelens
+      POSTGRES_PASSWORD: clever_trulens
 
   trulens-dashboard:
     build:
       context: trulens_dashboard
     ports:
       - "8501:8501"
-    env_file:
-      - .env
-      
+    environment:
+      - TRULENS_DB_URI=postgresql://postgres:clever_trulens@trulens-db:5432/

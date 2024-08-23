@@ -19,6 +19,19 @@ update-image-version:
 
 publish-with-chart: publish update-image-version
 
+# Trulens
+
+build-trulens:
+	docker build --platform linux/amd64 -t docker.yesidlopez.de/trulens-dashboard:latest trulens_dashboard
+
+publish-trulens: build-trulens
+publish-trulens:
+	docker push docker.yesidlopez.de/trulens-dashboard:latest
+
+deploy-trulens:
+	kubectl apply -f trulens_dashboard/k8s/deployment.yaml
+	kubectl apply -f trulens_dashboard/k8s/service.yaml
+
 # Local
 deps:
 	poetry install

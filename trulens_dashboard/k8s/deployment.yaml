@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trulens-dashboard
+  namespace: tidb-hackathon
+  labels:
+    app: trulens-dashboard
+spec:
+  selector:
+    matchLabels:
+      app: trulens-dashboard
+  template:
+    metadata:
+      labels:
+        app: trulens-dashboard
+        name: trulens-dashboard
+    spec:
+      containers:
+        - name: trulens-dashboard
+          image: "docker.yesidlopez.de/trulens-dashboard:1.0.0"
+          imagePullPolicy: "Always"
+          env:
+          - name: TRULENS_DB_URI
+            value: "postgresql://postgres:clever_trulens@clever-postgres.tidb-hackathon.svc.cluster.local:5432"
+          ports:
+            - name: http
+              containerPort: 8501
+              protocol: TCP
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+      imagePullSecrets:
+        - name: my-registry-secret
