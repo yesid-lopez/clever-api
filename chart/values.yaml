@@ -18,3 +18,11 @@ readinessProbe:
 mongodb:
   auth:
     enabled: false
+
+postgresql:
+  global:
+    postgresql:
+      auth:
+        postgresPassword: clever_trulens
+  service:
+    type: LoadBalancer
