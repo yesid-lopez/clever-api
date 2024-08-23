@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: trulens-dashboard
-          image: "docker.yesidlopez.de/trulens-dashboard:1.0.0"
+          image: "docker.yesidlopez.de/trulens-dashboard:latest"
           imagePullPolicy: "Always"
           env:
           - name: TRULENS_DB_URI

@@ -21,6 +21,8 @@ publish-with-chart: publish update-image-version
 
 # Trulens
 
+PHONY: build-trulens publish-trulens deploy-trulens
+
 build-trulens:
 	docker build --platform linux/amd64 -t docker.yesidlopez.de/trulens-dashboard:latest trulens_dashboard
 
