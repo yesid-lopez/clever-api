@@ -5,7 +5,8 @@ trulens monitoring dashboard: https://trulens-clever.yesidlopez.de/
 
 # Dependencies
 
-- Minio
+- Minio. Install easily with [this guide](https://picluster.ricsanfre.com/docs/minio/)
+- OpenAI
 
 ## How to run 
 
