@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "study_buddy"
-packages = [{include = "study_buddy"}]
+name = "clever"
+packages = [{include = "clever"}]
 version = "0.1.0"
 description = ""
 authors = ["Yesid Lopez <<yesid.leonardo.lopez@hotmail.com>>"]

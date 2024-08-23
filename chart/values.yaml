@@ -2,7 +2,7 @@ appName: clever
 namespace: tidb-hackathon
 
 image:
-  repository: docker.yesidlopez.de/study_buddy
+  repository: docker.yesidlopez.de/clever
   pullPolicy: IfNotPresent
   tag: "1.3.0"
 

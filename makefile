@@ -1,4 +1,4 @@
-APP_NAME=study_buddy
+APP_NAME=clever
 
 run-local:
 	python -m $(APP_NAME)
