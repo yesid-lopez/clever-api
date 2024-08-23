@@ -24,5 +24,6 @@ postgresql:
     postgresql:
       auth:
         postgresPassword: clever_trulens
-  service:
-    type: LoadBalancer
+  primary:
+    service:
+      type: LoadBalancer
