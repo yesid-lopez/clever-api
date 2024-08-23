@@ -22,7 +22,7 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_PASSWORD: study_buddy_trulens
+      POSTGRES_PASSWORD: clever_truelens
 
   trulens-dashboard:
     build:

@@ -1,14 +1,13 @@
 import os
 
 import numpy as np
-from openai import OpenAI
-from trulens_eval import Feedback, Tru, TruLlama
+from trulens_eval import Feedback, Select, Tru, TruLlama
+from trulens_eval.feedback.provider import OpenAI
 
 
 class TrulensClient:
     def __init__(self):
         self.tru = Tru(database_url=os.getenv("TRULENS_DB_URI"))
-        self.grounded = Groundedness(groundedness_provider=OpenAI())
         self.initialize_feedback_functions()
 
     def initialize_feedback_functions(self):
@@ -18,18 +17,24 @@ class TrulensClient:
                 provider.groundedness_measure_with_cot_reasons,
                 name="Groundedness",
             )
-            .on(context.collect())  # collect context chunks into a list
-            .on_output()
+            # collect context chunks into a list
+            .on(Select.RecordCalls.retrieve.rets.collect()).on_output()
         )
 
-        self.f_qa_relevance = Feedback(
-            openai.relevance, name="Answer Relevance"
-        ).on_input_output()
-
-        self.f_qs_relevance = (
-            Feedback(openai.qs_relevance, name="Context Relevance")
+        self.f_answer_relevance = (
+            Feedback(
+                provider.relevance_with_cot_reasons, name="Answer Relevance"
+            )
             .on_input()
-            .on(TruLlama.select_source_nodes().node.text)
+            .on_output()
+        )
+        self.f_context_relevance = (
+            Feedback(
+                provider.context_relevance_with_cot_reasons,
+                name="Context Relevance",
+            )
+            .on_input()
+            .on(Select.RecordCalls.retrieve.rets[:])
             .aggregate(np.mean)
         )
 
@@ -39,8 +44,8 @@ class TrulensClient:
             app_id=app_id,
             feedbacks=[
                 self.f_groundedness,
-                self.f_qa_relevance,
-                self.f_qs_relevance,
+                self.f_answer_relevance,
+                self.f_context_relevance,
             ],
         )
 
