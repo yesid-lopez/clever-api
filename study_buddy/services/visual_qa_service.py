@@ -90,13 +90,6 @@ def _ask(files: list[str], question: str):
 
     query_engine = get_query_engine(vector_stores)
 
-    # tru_query_engine_recorder = TrulensClient().create_recorder(
-    #     query_engine, "Visual Questions"
-    # )
-
-    # with tru_query_engine_recorder:
-    #     response = query_engine.query(question)
-
     response = query_engine.query(question)
 
     return str(response)
@@ -105,8 +98,7 @@ def _ask(files: list[str], question: str):
 def visual_qa(course_id: str, file: UploadFile):
     # ocr
     extracted_text = extract_text_from_file(file)
-    readable_content = convert_to_readable_text(extracted_text)
-    questionary = format_questionary(readable_content)
+    questionary = format_questionary(extracted_text)
 
     # get sources
     file_ids = course_service.find_course(course_id).files
