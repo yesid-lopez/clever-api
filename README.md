@@ -2,6 +2,7 @@
 
 backend deployed: https://clever.yesidlopez.de/docs
 trulens monitoring dashboard: https://trulens-clever.yesidlopez.de/
+mobile app: https://github.com/saradrada/clever
 
 # Dependencies
 
